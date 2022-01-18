@@ -6,9 +6,9 @@ app.use(express.static('public'));
 app.use('/snake',express.static('public/games files/Snake Game'));
 app.use('/dragon',express.static('public/games files/dragon game'));
 app.use('/tictactoe',express.static('public/games files/Tic Tac Toe'));
-let port=5500;
+let port=process.env.PORT ||5500;
 let server=app.listen(port,()=>{
-    console.log("Listening to port "+port);
+    // console.log("Listening to port "+port);
 })
 
 let io=socket(server);
@@ -69,7 +69,7 @@ io.on("connection",(socket)=>{
         else{
             socket.emit('return',"Invalid Room Name")
         }
-        console.log(users);
+        // console.log(users);
     })
     
     socket.on("disconnect",()=>{
@@ -81,7 +81,7 @@ io.on("connection",(socket)=>{
                 delete users[mapping[socket.id].room];
             }else if(users[key].length==2&&users[key][1].id===socket.id){
                 users[mapping[socket.id].room].splice(1,1);
-                console.log(users[mapping[socket.id].room]);
+                // console.log(users[mapping[socket.id].room]);
                 socket.to(users[key][0].id).emit("returnJoinAllFriends",{roomName:mapping[socket.id].room,users:users[mapping[socket.id].room]});
             }
         });
