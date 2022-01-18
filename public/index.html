@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./Images/games.jpg" type="image/x-icon" />
+    <title>Games</title>
+  </head>
+  <body>
+    <div class="body">
+      <div class="head">
+        <h1>Games</h1>
+      </div>
+      <div class="games">
+        <img onClick="fun('dragon')" src="images/dragon.png" />
+        <img onClick="fun('tictactoe')" src="images/favicon.png" />
+        <img onClick="fun('snake')" src="images/snake.png" />
+        <div class="imgText">
+          <div onClick="fun('dragon')" class="imgText1">Dragon Game</div>
+          <div onClick="fun('tictactoe')" class="imgText2">Tic Tac Toe</div>
+          <div onClick="fun('snake')" class="imgText3">Snake Game</div>
+        </div>
+      </div>
+      <a class="dragon" href="/dragon">Dragon Game</a>
+      <a class="snake" href="/snake">Snake Game</a>
+      <a class="tictactoe" href="/tictactoe">Tic Tac Toe</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

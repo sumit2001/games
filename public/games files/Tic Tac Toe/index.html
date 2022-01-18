@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./Icons/favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <!-- <button id="multiPlayer">Multiplayer</button> -->
+    <div class="cont">
+      <nav>
+        <ul>
+          <li id="singlePlayerBtn" class="active">Single Player</li>
+          <li id="multiPlayer">Multiplayer</li>
+          <li id="youAre"></li>
+          <li id="roomId"></li>
+        </ul>
+      </nav>
+      <i onClick="home()" class="fas fa-home"></i>
+
+      <div class="gameContainer">
+        <div class="roomInfo">
+          <button id="hostBtn">Host</button>
+          <button id="joinBtn">Join</button><br />
+        </div>
+        <!-- <h1>Welcome to Tic Tac Toe</h1> -->
+        <div class="container">
+          <div class="line"></div>
+          <div class="box0 box bt-0 bl-0"><span class="boxtext"></span></div>
+          <div class="box1 box bt-0"><span class="boxtext"></span></div>
+          <div class="box2 box bt-0 br-0"><span class="boxtext"></span></div>
+          <div class="box3 box bl-0"><span class="boxtext"></span></div>
+          <div class="box4 box"><span class="boxtext"></span></div>
+          <div class="box5 box br-0"><span class="boxtext"></span></div>
+          <div class="box6 box bl-0 bb-0"><span class="boxtext"></span></div>
+          <div class="box7 box bb-0"><span class="boxtext"></span></div>
+          <div class="box8 box bb-0 br-0"><span class="boxtext"></span></div>
+        </div>
+        <div class="gameInfo">
+          <div>
+            <span class="info"></span>
+            <button id="reset" disabled>Reset</button>
+            <div class="imgbox">
+              <img src="gifs/excited.gif" />
+            </div>
+          </div>
+        </div>
+        <div class="friendsInfo">
+          <h3>Friends Joined</h3>
+          <ul class="friends">
+            None
+            <!-- <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li> -->
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="modal">
+      <h4>Make a Room Id :</h4>
+        <input id="hostRoom" placeholder="Enter room name" type="text" />
+        <input id="yourName" placeholder="Enter Your Name" type="text" />
+        <div class="actionButtons">
+          <button id="host">Host</button>
+          <button id="cancel">Cancel</button>
+        </div>
+      <button id="join">Join</button>
+    </div> -->
+      <div class="menu-bar"></div>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+      integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // let socket = io.connect("http://localhost:5500");
+      let socket = io.connect("http://localhost:5500");
+    </script>
+    <script src="script.js"></script>
+    <script src="connection.js"></script>
+  </body>
+</html>

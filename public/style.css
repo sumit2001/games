@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
+body {
+  margin: 0;
+}
+
+.body {
+  background: url(images/bg.png);
+  min-height: 100vh;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Monoton", cursive;
+  font-size: 40px;
+  text-shadow: 2px 2px 5px red;
+}
+
+.head > h1 {
+  background-color: rgb(248 125 125 / 50%);
+  padding: 3px 147px;
+  border-radius: 105px;
+}
+
+.games {
+  margin-left: 1%;
+}
+
+.games > img {
+  height: 150px;
+  margin-right: 100px;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.games > div > div {
+  margin-right: 127px;
+  cursor: pointer;
+  padding: 5px 12px;
+}
+
+.games > div {
+  display: flex;
+  color: white;
+  font-size: 30px;
+  margin-left: 55px;
+}
+
+a {
+  display: none;
+}
+
+.games > img:hover {
+  background-color: rgb(248 125 125 / 50%);
+}
+
+.games > div > div:hover {
+  background-color: rgb(248 125 125 / 50%);
+}
