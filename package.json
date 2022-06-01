@@ -1,17 +1,26 @@
 {
+  "dependencies": {
+    "express": "^4.18.1",
+    "node": "^17.7.2",
+    "socket.io": "^4.5.1"
+  },
   "name": "games",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumit2001/games.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.2",
-    "socket.io": "^4.4.0",
-    "socket.js": "^0.1.4"
-  }
+  "bugs": {
+    "url": "https://github.com/sumit2001/games/issues"
+  },
+  "homepage": "https://github.com/sumit2001/games#readme",
+  "description": ""
 }
