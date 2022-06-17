@@ -409,3 +409,7 @@ function ui() {
     // })
 }
 //   ui();
+
+function home() {
+    location.href = '/';
+}

@@ -102,3 +102,10 @@ h1{
     margin-left: 100%;
   }
 } */
+
+.fa-home{
+    position: absolute;
+    left: 2%;
+    font-size: 40px;
+    cursor:pointer;
+}
