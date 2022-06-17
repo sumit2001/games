@@ -6,6 +6,7 @@ app.use(express.static('public'));
 app.use('/snake', express.static('public/games files/Snake Game'));
 app.use('/dragon', express.static('public/games files/dragon game'));
 app.use('/tictactoe', express.static('public/games files/Tic Tac Toe'));
+app.use('/2048', express.static('public/games files/2048 game'));
 let port = process.env.PORT || 5500;
 let server = app.listen(port, () => {
 })
