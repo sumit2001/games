@@ -411,5 +411,5 @@ function ui() {
 //   ui();
 
 function home() {
-    location.href = '/';
+    window.location.href = "https://sumit2001.github.io/kidGames/";
 }
