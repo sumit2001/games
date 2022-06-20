@@ -1,10 +1,21 @@
 move = new Audio('music/move.mp3');
+win = new Audio('music/win.wav');
 var arr = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ];                        //default board
+
+var startingX, startingY, movingX, movingY;
+function touchStart(evt) {
+    startingX = evt.touches[0].clientX;
+    startingY = evt.touches[0].clientY;
+}
+function touchMove(evt) {
+    movingX = evt.touches[0].clientX;
+    movingY = evt.touches[0].clientY;
+}
 
 var colMap = {
     0: "FFCCCC",
@@ -32,36 +43,52 @@ function random(n) {       // return a random value between 0 and n (includes 0)
 
 document.onkeydown = checkKey;
 
-function checkKey(e) {            // detecting arrow keys
+function checkKey(e) {         // detecting arrow keys
     move.play();
-    // setTimeout(()=>{
-    //     move.pause();
-    // },100);
+
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
     e = e || window.event;
     if (gameOn) {
         if (e.keyCode == '38') {
-            // printMessages("top move");
             topp();
             // up arrow
         }
         else if (e.keyCode == '40') {
-            // printMessages("bottom move");
             bottom();               // down arrow
         }
         else if (e.keyCode == '37') {
             // left arrow
-            // printMessages("left move");
             left();
         }
         else if (e.keyCode == '39') {
             // right arrow
-            // printMessages("right move");
             right();
         }
         ui();
     }
 
 
+}
+function touchEnd() {
+    const swipe = 40;
+    if (startingX + swipe < movingX) {
+        move.play();
+        right();
+    } else if (startingX - swipe > movingX) {
+        left();
+        move.play();
+    }
+
+    if (startingY + swipe < movingY) {
+        bottom();
+        move.play();
+    } else if (startingY - swipe > movingY) {
+        topp();
+        move.play();
+    }
+    ui();
 }
 
 function engine() {                        //This function is engine of the program.It will go and call all the functions
@@ -75,39 +102,9 @@ function engine() {                        //This function is engine of the prog
     let rn = rasi();                          //will get a place where no number is placed initially
     arr[rn[0]][rn[1]] = rn2;
     ui();
-    // print(arr);
-    // while(gameOn){
-    //     var dir=prompt("Enter Direction (1 for left, 2 for right, 3 for top, 4 for bottom, 0 for exit, 9 to play with arrow keys)");
-    //     if (dir == 3) {
-    //         printMessages("top move");
-    //         topp();                 // up arrow
-    //     }
-    //     else if (dir == 4) {
-    //         printMessages("bottom move");
-    //         bottom();                   // down arrow
-    //     }
-    //     else if (dir == 1) {         // left arrow
-    //         printMessages("left move");
-    //        left();
-    //     }
-    //     else if (dir == 2) {
-    //         printMessages("right move");
-    //        right();                 // right arrow
-    //     }else if(dir==0){
-    //         printMessages("GAME END");
-    //         gameOn=false;
-    //         break;                  //exit
-    //     }else if(dir==9){           //switch to arrow mode
-    //         printMessages("Switched to arrow mode");
-    //         break;
-    //     }
-
-    // }
 
 }
-//   function printMessages(str){
-//         console.log("---"+str+"---");
-//   }
+
 startGame();
 function startGame() {                 //this function will start the game
     highest = 0;
@@ -122,6 +119,7 @@ function startGame() {                 //this function will start the game
     document.querySelector('.resume').style["display"] = "none";
     //   printMessages("New Game Started");
     engine();
+    win.pause();
 }
 
 function rasi() {                      //this will return a random place where no number is filled
@@ -159,33 +157,14 @@ function checkIfOver() {               //this function will check whether game i
     return true;
 }
 
-
-//   function print(a){                    //this function will print the board
-//     const array = [];
-//     for(var i=0;i<4;i++){
-//         const keys={myId: "Row ", col_0: '-', col_1: '-', col_2: '-', col_3: '-'};
-//         keys.myId=keys.myId+i;
-//         keys.col_0=arr[i][0]==0?'-':arr[i][0];
-//         keys.col_1=arr[i][1]==0?'-':arr[i][1];
-//         keys.col_2=arr[i][2]==0?'-':arr[i][2];
-//         keys.col_3=arr[i][3]==0?'-':arr[i][3];
-//         array.push(keys);
-//     }
-//     const transformed = array.reduce((acc, {myId, ...x}) => { acc[myId] = x; return acc}, {})
-//     console.table(transformed)
-// for(var i=0;i<4;i++){
-//     console.log(...a[i]);
-// }
-//   }
-
 function checkIfWon() {                //this function will check if game is won or not
     if (highest == 2048 && !won) {
-        // printMessages("You Won");
         document.querySelector('.message').style["display"] = "block";
         document.querySelector('.message').innerText = "You Won";
         document.querySelector('.resume').style["display"] = "inline";
         gameOn = false;
         won = true;
+        win.play();
         return true;
     }
     return false;
@@ -195,6 +174,7 @@ function resume() {
     document.querySelector('.resume').style["display"] = "none";
     document.querySelector('.message').style["display"] = "none";
     gameOn = true;
+    win.pause();
 }
 
 function findAndEnterNextRandom() {            //this will place some digit in next random value
@@ -203,8 +183,6 @@ function findAndEnterNextRandom() {            //this will place some digit in n
     arr[rn[0]][rn[1]] = rn2;
     if (rn[2] == 2) {
         if (checkIfOver()) {
-            // print(arr);
-            // printMessages("You Lose!!");
             gameOn = false;
         }
     }
@@ -214,8 +192,6 @@ function printAndGetRandom(overall) {          //this function will help in prin
     if (overall) {
         findAndEnterNextRandom();
     }
-    // if(gameOn)  
-    //    print(arr);
 }
 
 function right() {                             //this function will manage the board when right arrow will be pressed
@@ -402,14 +378,9 @@ function ui() {
             }
         }
     }
-    //   let boxes=document.getElementsByClassName("box");
-    // Array.from(boxes).forEach(element=>{
-    //     let boxtext=element.querySelector('.boxtext');
-    //     boxtext.innerText="a";
-    // })
 }
-//   ui();
 
 function home() {
     window.location.href = "https://sumit2001.github.io/kidGames/";
 }
+

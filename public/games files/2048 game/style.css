@@ -18,15 +18,15 @@
   grid-template-columns: repeat(4, 8vw);
   font-family: "Roboto", sans-serif;
   position: relative;
-}
+} 
 
 .box {
-  border: 2px solid black;
-  font-size: 4vw;
+    border: 2px solid black;
+    font-size: 4vw;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} 
 
 .line {
   position: absolute;
@@ -60,13 +60,13 @@
   top: 9%;
 }
 
-.buttons > button {
+.resume,.reload{
   padding: 3px 22px;
   background-color: aliceblue;
   border-radius: 13px;
   box-shadow: currentColor 0.1px 0.1px 3px;
   border: none;
-  font-size: 1.2vw;
+  font-size: 15px;
   cursor: pointer;
   margin-left: 10px;
   margin-right: 10px;
@@ -103,9 +103,41 @@ h1{
   }
 } */
 
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow:hidden;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,0.08364842519038862) 0%, rgba(154,162,77,0.1984943635657388) 26%, rgba(255,0,214,0.1676820386357668) 100%)
+}
+
+@media only screen and (max-width: 750px) {
+  .container {
+    grid-template-rows: repeat(4, 18vw);
+    grid-template-columns: repeat(4, 18vw);
+  } 
+  .box {
+    font-size:7vw !important;
+  } 
+}
+@media only screen and (max-width: 1000px) and (min-width:750px) {
+  .container {
+    grid-template-rows: repeat(4, 15vw);
+    grid-template-columns: repeat(4, 15vw);
+  }
+  .box {
+    font-size:6vw !important;
+  }
+}
 .fa-home{
     position: absolute;
     left: 2%;
     font-size: 40px;
     cursor:pointer;
+    top:2%
 }
