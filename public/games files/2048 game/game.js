@@ -1,5 +1,6 @@
 move = new Audio('music/move.mp3');
 win = new Audio('music/win.wav');
+lose = new Audio('music/lose.wav');
 var arr = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -72,23 +73,28 @@ function checkKey(e) {         // detecting arrow keys
 
 }
 function touchEnd() {
-    const swipe = 40;
-    if (startingX + swipe < movingX) {
-        move.play();
-        right();
-    } else if (startingX - swipe > movingX) {
-        left();
-        move.play();
-    }
 
-    if (startingY + swipe < movingY) {
-        bottom();
-        move.play();
-    } else if (startingY - swipe > movingY) {
-        topp();
-        move.play();
+    const swipe = 50;
+    if (gameOn) {
+        if (startingX + swipe < movingX) {
+            move.play();
+            right();
+        } else if (movingX != 0 && startingX - swipe > movingX) {
+            move.play();
+            left();
+        }
+
+        else if (startingY + swipe < movingY) {
+            move.play();
+            bottom();
+        } else if (movingY != 0 && startingY - swipe > movingY) {
+            move.play();
+            topp();
+        }
     }
     ui();
+    movingX = 0;
+    movingY = 0;
 }
 
 function engine() {                        //This function is engine of the program.It will go and call all the functions
@@ -120,6 +126,7 @@ function startGame() {                 //this function will start the game
     //   printMessages("New Game Started");
     engine();
     win.pause();
+    lose.pause();
 }
 
 function rasi() {                      //this will return a random place where no number is filled
@@ -138,7 +145,6 @@ function rasi() {                      //this will return a random place where n
     sind[2] = sarr.length;
     return sind;
 }
-
 function checkIfOver() {               //this function will check whether game is over or not (if game is over return true else false)
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length - 1; j++) {
@@ -154,6 +160,7 @@ function checkIfOver() {               //this function will check whether game i
     }
     document.querySelector('.message').style["display"] = "block";
     document.querySelector('.message').innerText = "Game Over";
+    lose.play();
     return true;
 }
 
@@ -175,6 +182,7 @@ function resume() {
     document.querySelector('.message').style["display"] = "none";
     gameOn = true;
     win.pause();
+    lose.pause();
 }
 
 function findAndEnterNextRandom() {            //this will place some digit in next random value

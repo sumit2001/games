@@ -124,6 +124,19 @@ body {
   .box {
     font-size:7vw !important;
   } 
+  .fa-home{
+    font-size:25px !important;
+    left: 2% !important;
+    top:4% !important;
+  }
+  .message {
+    position: absolute;
+    font-size: 10vw;
+    top: 55%;
+    background-color: aliceblue;
+    padding: 3%;
+    border-radius: 20px;
+  }
 }
 @media only screen and (max-width: 1000px) and (min-width:750px) {
   .container {
